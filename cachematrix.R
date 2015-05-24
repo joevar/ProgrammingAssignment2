@@ -21,7 +21,8 @@ list(set = set, get = get, setcache = setcache, getcache = getcache)
 
 ##The function cacheSolve calculates the inverse of the special “matrix” created with the ##makeCacheMatrix function
 ##It first checks to see if the inverse has already been calculated
-##If the inverse of the matrix is available in the cache, then it uses the cache to ##retrieve the value of the matrix inverse which saves the cost of the inverse computation 
+##If the inverse of the matrix is available in the cache, then it uses the cache to ##retrieve the value of the matrix inverse 
+##which saves the cost of the inverse computation 
 
 cacheSolve <- function(x, ...) {
         m <- x$getcache()
@@ -34,4 +35,39 @@ cacheSolve <- function(x, ...) {
         x$setcache(inverse_matrix)
         inverse_matrix
 }
+## Test run 
+##> a <- makeCacheMatrix()
+##> a$set(matrix(c(1,2,3,4),2,2))
+##> a$get()
+##     [,1] [,2]
+##[1,]    1    3
+##[2,]    2    4
+##> cacheSolve(a)
+##     [,1] [,2]
+##[1,]   -2  1.5
+##[2,]    1 -0.5
+## Second run for cacheSolve
+##> cacheSolve(a)
+##  ... getting from cached data
+##     [,1] [,2]
+##[1,]   -2  1.5
+##[2,]    1 -0.5
+## Try the same functions using different values in the matrix
+##> a$set(matrix(c(5,6,7,8),2,2))
+##> a$get()
+##     [,1] [,2]
+##[1,]    5    7
+##[2,]    6    8
+##> cacheSolve(a)
+##     [,1] [,2]
+##[1,]   -4  3.5
+##[2,]    3 -2.5
+## Second run for cacheSolve
+##> cacheSolve(a)
+##  ... getting from cached data
+##     [,1] [,2]
+##[1,]   -4  3.5
+##[2,]    3 -2.5
+
+
 
