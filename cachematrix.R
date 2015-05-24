@@ -37,11 +37,14 @@ cacheSolve <- function(x, ...) {
 }
 ## Test run 
 ##> a <- makeCacheMatrix()
+##  initialize the matrix
 ##> a$set(matrix(c(1,2,3,4),2,2))
+## display the values
 ##> a$get()
 ##     [,1] [,2]
 ##[1,]    1    3
 ##[2,]    2    4
+## First time execute
 ##> cacheSolve(a)
 ##     [,1] [,2]
 ##[1,]   -2  1.5
@@ -52,12 +55,16 @@ cacheSolve <- function(x, ...) {
 ##     [,1] [,2]
 ##[1,]   -2  1.5
 ##[2,]    1 -0.5
+##
+##
 ## Try the same functions using different values in the matrix
 ##> a$set(matrix(c(5,6,7,8),2,2))
+## display the values
 ##> a$get()
 ##     [,1] [,2]
 ##[1,]    5    7
 ##[2,]    6    8
+## first time execute with the new value
 ##> cacheSolve(a)
 ##     [,1] [,2]
 ##[1,]   -4  3.5
